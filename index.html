@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Shalini &amp; Sudharshan – Engagement</title>
+<!-- WhatsApp preview card (set og:image to a full https:// URL of a preview picture once hosted) -->
+<meta property="og:title" content="Shalini ❤ Sudharshan – Engagement Invitation ✨">
+<meta property="og:description" content="13 December 2026 · Darling Residency, Vellore. Tap to open your invitation.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --gold:#f6d27a; --gold-deep:#c9983a; --ivory:#fff7ea; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#000;overflow:hidden;overscroll-behavior:none}
+  body{font-family:'Cormorant Garamond',Georgia,serif;color:var(--ivory);-webkit-tap-highlight-color:transparent;
+    -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+
+  #stage{position:fixed;inset:0;overflow:hidden;background:#000;touch-action:manipulation}
+  #stage.idle{cursor:none}
+  #stage.paused *{animation-play-state:paused !important}
+  /* soft wine glow that fades in only after the flash */
+  #glow{position:absolute;inset:0;opacity:0;transition:opacity 2s ease;
+    background:radial-gradient(ellipse at 50% 42%, #4a0a1c 0%, #1d0409 55%, #050102 100%)}
+  #glow.on{opacity:1}
+
+  video{position:absolute;inset:0;width:100%;height:100%;background:#000;opacity:0;transition:opacity .5s ease}
+  video.on{opacity:1}
+  #petals{object-fit:cover}
+
+  #fx{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+
+  /* magical words */
+  #magic{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;padding:0 7vw;text-align:center;pointer-events:none}
+  .mline{font-family:'Great Vibes','Cormorant Garamond',cursive;font-size:clamp(34px,8.5vw,84px);line-height:1.25;
+    color:#ffe9ad;text-shadow:0 0 14px rgba(255,196,80,.85),0 0 40px rgba(255,150,60,.45);
+    transition:opacity .7s ease, filter .7s ease, transform .7s ease}
+  .mline .w{display:inline-block;white-space:nowrap;margin:0 .14em}
+  .mline .w span{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(14px) scale(1.5);
+    animation:letterIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+  .mline.out{opacity:0;filter:blur(8px);transform:scale(1.06)}
+  @keyframes letterIn{to{opacity:1;filter:blur(0);transform:none}}
+
+  /* invitation card */
+  #cardWrap{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;padding:4vh 5vw;pointer-events:none}
+  #card{position:relative;width:min(560px,100%);max-height:100%;overflow:auto;text-align:center;scrollbar-width:none;
+    padding:clamp(24px,4vh,40px) clamp(20px,6vw,44px);
+    background:linear-gradient(160deg,#fff7e8 0%,#fbe8c6 100%);color:#7a1d1d;border-radius:6px;
+    box-shadow:0 0 0 2px #fff7e8,0 0 0 4px #d99a1e,0 0 60px rgba(246,210,122,.55),0 30px 80px rgba(0,0,0,.6);
+    opacity:0;transform:translateY(60px) scale(.92);pointer-events:auto;
+    transition:opacity 1.4s ease, transform 1.6s cubic-bezier(.2,.8,.2,1)}
+  #card::-webkit-scrollbar{display:none}
+  #card.show{opacity:1;transform:none}
+  #card .it{opacity:0;transform:translateY(14px)}
+  #card.show .it{animation:rise 1s ease forwards;animation-delay:calc(var(--i)*.22s + .5s)}
+  @keyframes rise{to{opacity:1;transform:none}}
+  :root{--green:#0b6b3a;--maroon:#7a1d1d;--gold2:#d99a1e}
+  .orn{font-size:20px;color:var(--gold2);letter-spacing:.5em}
+  .god{font-size:clamp(13px,3.4vw,16px);color:var(--maroon);margin-top:4px}
+  .titleTa{font-size:clamp(20px,5.6vw,28px);font-weight:700;color:var(--green);margin-top:8px;line-height:1.3}
+  .titleEn{font-family:'Great Vibes',cursive;font-size:clamp(28px,8vw,40px);color:var(--green);line-height:1.15;margin-top:2px}
+  .couple{width:clamp(120px,34vw,150px);aspect-ratio:1;margin:12px auto 4px;border-radius:50%;background:url(couple.jpg) center/cover;
+    box-shadow:0 0 0 3px #fff7e8,0 0 0 5px var(--gold2),0 8px 24px rgba(122,29,29,.3)}
+  .lead{font-style:italic;font-size:clamp(15px,4vw,19px);margin-top:10px}
+  .nm{font-family:'Great Vibes',cursive;font-size:clamp(36px,10.5vw,54px);line-height:1.1;color:var(--green);margin-top:6px}
+  .nm small{font-family:'Cormorant Garamond',serif;font-size:.3em;color:var(--maroon);margin-left:.3em}
+  .par{font-size:clamp(13px,3.4vw,16px);color:#8a3a3a;margin-top:2px}
+  .heart{color:#d3202e;font-size:22px;margin:6px 0 0}
+  .line{width:60%;height:1px;margin:14px auto;background:linear-gradient(90deg,transparent,var(--gold2),transparent)}
+  .on-day{font-family:'Great Vibes',cursive;font-size:clamp(26px,7vw,34px);color:var(--maroon)}
+  .when{font-size:clamp(20px,5.4vw,26px);font-weight:600;color:var(--green)}
+  .time{font-size:clamp(15px,4vw,19px);margin-top:2px}
+  .muhu{font-size:clamp(13px,3.4vw,15px);color:#8a3a3a;margin-top:6px}
+  .cal{width:min(250px,80%);margin:14px auto 0;border:2px solid var(--gold2);border-radius:10px;padding:8px 6px;background:#fff9ee}
+  .cal .mo{font-family:'Great Vibes',cursive;font-size:22px;color:var(--maroon);margin-bottom:2px}
+  .cal .g{display:grid;grid-template-columns:repeat(7,1fr);gap:2px 0;font-size:13px;line-height:1.9}
+  .cal .g b{font-weight:600;font-size:10px;color:#8a6a2a}
+  .cal .g i{font-style:normal;color:#5b1a1a}
+  .cal .g i.d{background:#b3213f;color:#fff;border-radius:50%;font-weight:700;width:24px;height:24px;line-height:24px;margin:0 auto}
+  .pin{font-size:22px;margin-top:14px}
+  .vn{font-family:'Cinzel',serif;font-size:clamp(14px,3.8vw,17px);color:var(--green);font-weight:600;letter-spacing:.06em}
+  .vta{font-size:clamp(13px,3.4vw,15px);color:#8a3a3a;margin-top:3px}
+  .note{margin-top:14px;font-size:clamp(14px,3.6vw,17px);font-style:italic}
+  .rsvp{display:inline-block;margin-top:12px;padding:10px 24px;border-radius:40px;text-decoration:none;
+    font-family:'Cinzel',serif;font-size:11px;letter-spacing:.22em;color:#fff7ea;
+    background:linear-gradient(135deg,#0f8a4a,#0b6b3a);box-shadow:0 6px 18px rgba(11,107,58,.4)}
+
+  /* flash */
+  #flash{position:absolute;inset:0;z-index:10;background:#fff;opacity:0;pointer-events:none}
+
+  /* opening screen: one touch gives us fullscreen */
+  #gate{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:#000;transition:opacity .8s ease}
+  #gate.hide{opacity:0;pointer-events:none}
+  #go{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:26px;padding:30px}
+  .seal{width:92px;height:92px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;color:#ffe9ad;
+    background:radial-gradient(circle at 35% 30%,#e04a68,#8a1830 70%);box-shadow:0 0 0 2px rgba(246,210,122,.7),0 0 40px rgba(179,33,63,.6);
+    animation:seal 2.4s ease-in-out infinite}
+  @keyframes seal{50%{box-shadow:0 0 0 7px rgba(246,210,122,.35),0 0 64px rgba(246,80,110,.75)}}
+  .gt{font-family:'Cinzel',serif;letter-spacing:.34em;font-size:13px;color:var(--gold);text-transform:uppercase}
+
+  /* controls: hidden like a screensaver, appear on touch then fade */
+  #ui{position:absolute;inset:0;z-index:25;pointer-events:none;opacity:0;transition:opacity .5s ease}
+  #ui.on{opacity:1}
+  #ui button{all:unset;cursor:pointer;pointer-events:none;position:absolute;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.22em;
+    color:var(--gold);padding:11px 16px;border:1px solid rgba(246,210,122,.55);border-radius:30px;background:rgba(0,0,0,.45);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);touch-action:none}
+  #ui.on button{pointer-events:auto}
+  #bClose{top:calc(14px + env(safe-area-inset-top));right:14px}
+  #bReplay{top:calc(14px + env(safe-area-inset-top));left:14px}
+  #bHold{bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);white-space:nowrap}
+  #bHold.down{background:rgba(246,210,122,.25)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow"></div>
+  <video id="petals" src="Rose%20petals.mp4" muted playsinline preload="auto"></video>
+  <canvas id="fx"></canvas>
+  <div id="magic"></div>
+  <div id="cardWrap">
+    <div id="card">
+      <div class="it orn" style="--i:0">✦ ❀ ✦</div>
+      <div class="it god" style="--i:1" id="c_god"></div>
+      <div class="it titleTa" style="--i:2" id="c_titleTa"></div>
+      <div class="it titleEn" style="--i:3" id="c_titleEn"></div>
+      <div class="it couple" style="--i:4"></div>
+      <div class="it lead" style="--i:5" id="c_lead"></div>
+      <div class="it nm" style="--i:6" id="c_bride"></div>
+      <div class="it par" style="--i:7" id="c_brideP"></div>
+      <div class="it heart" style="--i:8">❤ ❤</div>
+      <div class="it nm" style="--i:9" id="c_groom"></div>
+      <div class="it par" style="--i:10" id="c_groomP"></div>
+      <div class="it line" style="--i:11"></div>
+      <div class="it on-day" style="--i:12" id="c_day"></div>
+      <div class="it when" style="--i:12" id="c_date"></div>
+      <div class="it time" style="--i:13" id="c_time"></div>
+      <div class="it muhu" style="--i:13" id="c_muhu"></div>
+      <div class="it cal" style="--i:14" id="c_cal"></div>
+      <div class="it pin" style="--i:15">📍</div>
+      <div class="it vn" style="--i:15" id="c_venue"></div>
+      <div class="it vta" style="--i:15" id="c_venueTa"></div>
+      <div class="it note" style="--i:16" id="c_note"></div>
+      <a class="it rsvp" style="--i:16" id="c_map" href="#" target="_blank" rel="noopener">VIEW LOCATION</a>
+    </div>
+  </div>
+  </div>
+  <div id="flash"></div>
+  <div id="ui">
+    <button id="bReplay">↻ REPLAY</button>
+    <button id="bClose">✕ CLOSE</button>
+    <button id="bHold">HOLD TO PAUSE</button>
+  </div>
+  <div id="gate"><button id="go"><span class="seal">❀</span><span class="gt">Open Invitation</span></button></div>
+</div>
+
+<script>
+/* ============ EDIT YOUR INVITATION HERE ============ */
+const INVITE = {
+  god:     "ஸ்ரீ முருகன் துணை",
+  titleTa: "திருமண நிச்சயதார்த்த அழைப்பிதழ்",
+  titleEn: "Wedding Engagement Invitation",
+  lead:    "We cordially invite you to the wedding engagement of our",
+  bride:   "S. Shalini",  brideEdu: "B.Tech.",
+  brideP:  "D/o Mr. G. Suresh – Mrs. S. Kavitha, Kaniyambadi",
+  groom:   "P. Sudharshan", groomEdu: "NTTF, B.Tech.",
+  groomP:  "S/o Mr. N. Prabhakaran – P. Komathi, Kaniyampadi",
+  day:     "On Sunday",
+  date:    "13th December 2026",
+  time:    "From 6.00 p.m. onwards",
+  muhu:    "கார்த்திகை 27 (13-12-2026) ஞாயிற்றுக்கிழமை மாலை 6.00 – 7.30 மணிக்குள்",
+  venue:   "Darling Residency, Vellore",
+  venueTa: "அண்ணா சாலை, டார்லிங் ரெசிடென்சி மணப்பிரியா ஹால், வேலூர்",
+  note:    "Awaiting your presence with love",
+  mapLink: "https://www.google.com/maps/search/?api=1&query=Darling+Residency+Vellore",
+  calYear: 2026, calMonth: 11, calDay: 13      // month: 0 = Jan ... 11 = Dec
+};
+const MAGIC_LINES = [
+  "Two hearts…",
+  "one beautiful bond…",
+  "and a forever to begin ✨"
+];
+/* ================================================== */
+
+const $ = s => document.querySelector(s);
+/* run control: gen cancels an old run (replay/close); sleep does not count time while paused */
+const CANCEL = {};
+let gen = 0, paused = false, vclock = 0;
+const sleep = ms => new Promise((res, rej) => {
+  const g = gen; let acc = 0;
+  const iv = setInterval(() => {
+    if(g !== gen){ clearInterval(iv); rej(CANCEL); return; }
+    if(!paused){ acc += 50; if(acc >= ms){ clearInterval(iv); res(); } }
+  }, 50);
+});
+const T = (id, v) => { $(id).textContent = v; };
+T('#c_god', INVITE.god); T('#c_titleTa', INVITE.titleTa); T('#c_titleEn', INVITE.titleEn); T('#c_lead', INVITE.lead);
+T('#c_brideP', INVITE.brideP); T('#c_groomP', INVITE.groomP);
+$('#c_bride').innerHTML = INVITE.bride + '<small>' + INVITE.brideEdu + '</small>';
+$('#c_groom').innerHTML = INVITE.groom + '<small>' + INVITE.groomEdu + '</small>';
+T('#c_day', INVITE.day); T('#c_date', INVITE.date); T('#c_time', INVITE.time); T('#c_muhu', INVITE.muhu);
+T('#c_venue', INVITE.venue); T('#c_venueTa', INVITE.venueTa); T('#c_note', INVITE.note);
+$('#c_map').href = INVITE.mapLink;
+(function(){                                       // little month calendar with the day circled
+  const y = INVITE.calYear, m = INVITE.calMonth, first = new Date(y, m, 1).getDay(), n = new Date(y, m + 1, 0).getDate();
+  const name = new Date(y, m, 1).toLocaleString('en', {month:'long'});
+  let h = '<div class="mo">' + name + ' – ' + y + '</div><div class="g">' + ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => '<b>'+d+'</b>').join('');
+  for(let i = 0; i < first; i++) h += '<i></i>';
+  for(let d = 1; d <= n; d++) h += '<i' + (d === INVITE.calDay ? ' class="d"' : '') + '>' + d + '</i>';
+  $('#c_cal').innerHTML = h + '</div>';
+})();
+
+
+/* ---------- ambient canvas: sparkle dust + falling petals (after the flash) ---------- */
+const cv = $('#fx'), ctx = cv.getContext('2d');
+let W, H, DPR, dust = [], petals = [], ambientDust = false, ambientPetals = false;
+let sparks = [], rocket = null, glows = [];
+function resize(){ DPR = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
+  cv.width = W*DPR; cv.height = H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
+addEventListener('resize', resize); resize();
+const rand = (a,b) => a + Math.random()*(b-a);
+const newPetal = anywhere => ({x:Math.random()*W,y:anywhere?Math.random()*H:-20,vy:rand(.6,1.6),sw:rand(.3,1),
+  ph:Math.random()*6.28,rot:Math.random()*6.28,vr:rand(-.03,.03),s:rand(7,14)});
+/* ---- cracker rocket + burst ---- */
+const PALETTES = [['#ffd36b','#ffb347','#fff2b0'],['#ff6b8b','#ff9fb5','#ffd1dc'],['#ffffff','#ffe9ad','#ffd36b']];
+function addSpark(o){ sparks.push(Object.assign({life:60,size:2,grav:.05,drag:.97,trail:true,twinkle:false},o,{max:o.life,px:o.x,py:o.y})); }
+function burst(x, y, scale=1, big=true){
+  const pal = PALETTES[Math.floor(Math.random()*PALETTES.length)];
+  const n = Math.round((big?170:70)*scale);
+  for(let i=0;i<n;i++){
+    const a = Math.random()*Math.PI*2, ring = [3.2,5,6.8][i%3]*rand(.92,1.08)*scale;
+    addSpark({x,y,vx:Math.cos(a)*ring,vy:Math.sin(a)*ring,life:rand(60,95),size:rand(1.6,2.8),color:pal[i%pal.length],grav:.045,drag:.972});
+  }
+  for(let i=0;i<(big?60:20);i++){
+    const a = Math.random()*Math.PI*2, s = rand(.4,3.2)*scale;
+    addSpark({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:rand(70,130),size:rand(1,2),color:'#fff6d6',grav:.02,drag:.985,trail:false,twinkle:true});
+  }
+  glows.push({x,y,t:0,r:(big?340:150)*scale});
+}
+function launch(){
+  return new Promise(res => {
+    const x0 = W*0.5, y0 = H+30, yT = Math.max(H*0.17, 90), dur = Math.max(1700, H*2.1);
+    rocket = {x:x0,y:y0,px:x0,py:y0,t0:vclock,dur,x0,y0,yT,done:()=>{ rocket=null; res(); }};
+  });
+}
+function drawRocket(r){
+  ctx.save(); ctx.translate(r.x,r.y); ctx.rotate(Math.atan2(r.x-r.px, -(r.y-r.py)) || 0);
+  ctx.globalCompositeOperation = 'lighter';
+  const fl = 16 + Math.random()*12, g = ctx.createLinearGradient(0,8,0,8+fl);
+  g.addColorStop(0,'rgba(255,245,200,.95)'); g.addColorStop(.5,'rgba(255,150,40,.7)'); g.addColorStop(1,'rgba(255,60,0,0)');
+  ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(-4,8); ctx.quadraticCurveTo(0,8+fl*1.3,4,8); ctx.fill();
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.fillStyle = '#c9983a'; ctx.fillRect(-4,-14,8,22);
+  ctx.fillStyle = '#e9c05a'; ctx.fillRect(-4,-14,3,22);
+  ctx.fillStyle = '#b3213f'; ctx.beginPath(); ctx.moveTo(-4,-14); ctx.lineTo(0,-26); ctx.lineTo(4,-14); ctx.fill();
+  ctx.fillStyle = '#8a1830';
+  ctx.beginPath(); ctx.moveTo(-4,2); ctx.lineTo(-10,12); ctx.lineTo(-4,8); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(4,2); ctx.lineTo(10,12); ctx.lineTo(4,8); ctx.fill();
+  ctx.restore();
+}
+
+let last = performance.now();
+function frame(now){
+  const dt = Math.min((now-last)/16.67, 3); last = now;
+  if(paused){ requestAnimationFrame(frame); return; }      // freeze the canvas exactly as it is
+  vclock += dt*16.67;
+  ctx.clearRect(0,0,W,H);
+  if(ambientDust){
+    if(!dust.length) for(let i=0;i<70;i++) dust.push({x:Math.random()*W,y:Math.random()*H,r:rand(.6,2),p:Math.random()*6.28,s:rand(.01,.03)});
+    ctx.globalCompositeOperation='lighter';
+    dust.forEach(d=>{ d.p+=d.s*dt; const a=(Math.sin(d.p)+1)/2; ctx.fillStyle=`rgba(255,226,150,${a*.85})`;
+      ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,6.28); ctx.fill(); d.y-=.08*dt; if(d.y<-5) d.y=H+5; });
+  }
+  if(rocket){
+    const r = rocket, t = Math.min((vclock-r.t0)/r.dur,1), e = Math.pow(t,1.7);
+    r.px=r.x; r.py=r.y; r.y = r.y0 + (r.yT-r.y0)*e; r.x = r.x0 + Math.sin(t*16)*7*(1-t*.5);
+    for(let i=0;i<4;i++) addSpark({x:r.x+rand(-2,2),y:r.y+12,vx:rand(-.6,.6),vy:rand(.8,2.6),life:rand(22,44),size:rand(1.2,2.6),
+      color:Math.random()<.5?'#ffb347':'#ffe9ad',grav:.02,drag:.96,trail:false});
+    drawRocket(r);
+    if(t>=1){
+      burst(r.x,r.y,1,true);
+      setTimeout(()=>burst(r.x-W*.12,r.y+H*.05,.6,false),170);
+      setTimeout(()=>burst(r.x+W*.12,r.y+H*.04,.6,false),300);
+      r.done();
+    }
+  }
+  ctx.globalCompositeOperation='lighter';
+  glows = glows.filter(g=>{ g.t+=dt; const k=g.t/22; if(k>1) return false;
+    const gr=ctx.createRadialGradient(g.x,g.y,0,g.x,g.y,g.r*(.4+k));
+    gr.addColorStop(0,`rgba(255,240,190,${.8*(1-k)})`); gr.addColorStop(1,'rgba(255,200,100,0)');
+    ctx.fillStyle=gr; ctx.fillRect(g.x-g.r*2,g.y-g.r*2,g.r*4,g.r*4); return true; });
+  sparks = sparks.filter(s=>{
+    s.life-=dt; if(s.life<=0) return false;
+    s.px=s.x; s.py=s.y; s.vx*=Math.pow(s.drag,dt); s.vy=s.vy*Math.pow(s.drag,dt)+s.grav*dt; s.x+=s.vx*dt; s.y+=s.vy*dt;
+    let a = Math.min(1,s.life/s.max*1.6); if(s.twinkle) a*=(.4+.6*Math.random());
+    ctx.strokeStyle=s.color; ctx.fillStyle=s.color; ctx.globalAlpha=a;
+    if(s.trail){ ctx.lineWidth=s.size; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(s.px,s.py); ctx.lineTo(s.x,s.y); ctx.stroke(); }
+    else { ctx.beginPath(); ctx.arc(s.x,s.y,s.size,0,6.28); ctx.fill(); }
+    ctx.globalAlpha=1; return true; });
+  ctx.globalCompositeOperation='source-over';
+  if(ambientPetals){
+    const target = W<600 ? 16 : 28;
+    while(petals.length<target) petals.push(newPetal(true));
+    petals.forEach((p,i)=>{
+      p.y+=p.vy*dt; p.x+=Math.sin(p.ph+=0.02*dt)*p.sw*dt; p.rot+=p.vr*dt;
+      if(p.y>H+30) petals[i]=newPetal(false);
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.scale(1,.55+.45*Math.abs(Math.sin(p.ph)));
+      const g=ctx.createRadialGradient(0,0,1,0,0,p.s); g.addColorStop(0,'#ff8fa6'); g.addColorStop(1,'#b3213f');
+      ctx.globalAlpha=.88; ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(0,0,p.s*.62,p.s,0,0,6.28); ctx.fill(); ctx.restore(); });
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---------- sequence ---------- */
+const petalsV = $('#petals'), magic = $('#magic'), card = $('#card'), flash = $('#flash'), glow = $('#glow');
+
+// resolves true when it plays, false if the browser blocked autoplay
+function startVideo(v){
+  return new Promise(res => {
+    v.currentTime = 0;
+    const p = v.play();
+    if(p && p.then) p.then(() => res(true), () => res(false)); else res(true);
+  });
+}
+function waitEnded(v){
+  const g = gen;
+  return new Promise((res, rej) => {
+    const iv = setInterval(() => {
+      if(g !== gen){ clearInterval(iv); rej(CANCEL); }
+      else if(v.ended){ clearInterval(iv); res(); }
+    }, 100);
+    v.onerror = () => { clearInterval(iv); setTimeout(res, 500); };
+  });
+}
+async function showLine(text){
+  magic.innerHTML = ''; const p = document.createElement('p'); p.className = 'mline';
+  let i = 0;
+  text.split(' ').forEach(word => {
+    const w = document.createElement('span'); w.className = 'w';
+    [...word].forEach(ch => { const s = document.createElement('span'); s.textContent = ch; s.style.animationDelay = (i++*55)+'ms'; w.appendChild(s); });
+    p.appendChild(w); p.appendChild(document.createTextNode(' '));
+  });
+  magic.appendChild(p);
+  await sleep(i*55 + 800 + 1100);
+  p.classList.add('out'); await sleep(750);
+}
+function reset(){
+  ambientDust = false; ambientPetals = false; petals = []; sparks = []; glows = []; rocket = null;
+  magic.innerHTML = ''; card.classList.remove('show');
+  glow.classList.remove('on'); flash.style.transition = 'none'; flash.style.opacity = 0;
+  petalsV.classList.remove('on'); petalsV.pause();
+}
+
+async function run(from = 'petals'){
+  const g = ++gen; setPaused(false); reset();
+  const chk = () => { if(g !== gen) throw CANCEL; };
+  const order = ['petals','rocket','magic','card']; const at = order.indexOf(from);
+  try{
+    if(at <= 0){                                 // 1) black screen + rose petals
+      petalsV.classList.add('on');
+      await startVideo(petalsV); chk();
+      await waitEnded(petalsV); chk();
+      petalsV.classList.remove('on'); await sleep(250);
+    }
+    if(at <= 1){                                 // 2) cracker rocket rises bottom -> top and bursts
+      await launch(); chk();                     // resolves on the exact frame the rocket bursts
+      flash.style.transition = 'opacity .14s ease-out'; flash.style.opacity = 1;  // 3) burst -> screen goes white at once
+      await sleep(1000);
+    }
+    if(at <= 2){                                 // 4) magical words
+      glow.classList.add('on'); ambientDust = true;
+      flash.style.transition = 'opacity 1.8s ease-out'; flash.style.opacity = 0; await sleep(700);
+      for(const l of MAGIC_LINES) await showLine(l);
+    } else { glow.classList.add('on'); }
+    ambientDust = true; ambientPetals = true;    // 5) invitation
+    card.classList.add('show');
+    await sleep(6500); autoScroll(g);            // let the lines appear, then glide down slowly
+  } catch(e){ if(e !== CANCEL) throw e; }
+}
+let userScrolled = false;
+['wheel','touchmove'].forEach(t => card.addEventListener(t, () => { userScrolled = true; }, {passive:true}));
+function autoScroll(g){
+  userScrolled = false; let pos = 0; card.scrollTop = 0;
+  const step = () => {
+    if(g !== gen || userScrolled) return;
+    if(!paused){ const max = card.scrollHeight - card.clientHeight; if(pos >= max - 1) return; pos += 0.5; card.scrollTop = pos; }
+    requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+/* ---------- screensaver-style behaviour ---------- */
+const stage = $('#stage'), ui = $('#ui'), gate = $('#gate'), bHold = $('#bHold');
+const param = () => new URLSearchParams(location.search).get('phase') || 'petals';
+
+function setPaused(p){
+  paused = p; stage.classList.toggle('paused', p); bHold.classList.toggle('down', p);
+  if(p) petalsV.pause(); else if(petalsV.classList.contains('on') && !petalsV.ended) petalsV.play().catch(()=>{});
+}
+let uiTimer;
+function showUI(){
+  ui.classList.add('on'); stage.classList.remove('idle'); clearTimeout(uiTimer);
+  uiTimer = setTimeout(() => { if(!paused){ ui.classList.remove('on'); stage.classList.add('idle'); } }, 2800);
+}
+function enterFS(){                              // needs the touch on the open button; no permission prompt
+  const el = document.documentElement, f = el.requestFullscreen || el.webkitRequestFullscreen;
+  try{ const p = f && f.call(el, {navigationUI:'hide'}); if(p && p.catch) p.catch(()=>{}); }catch(e){}
+}
+function exitFS(){
+  try{ const f = document.exitFullscreen || document.webkitExitFullscreen; if(f && (document.fullscreenElement || document.webkitFullscreenElement)) f.call(document); }catch(e){}
+}
+let wl = null;                                   // keep the screen from dimming/sleeping (no prompt)
+async function keepAwake(){ try{ if('wakeLock' in navigator) wl = await navigator.wakeLock.request('screen'); }catch(e){} }
+function release(){ try{ wl && wl.release(); }catch(e){} wl = null; }
+document.addEventListener('visibilitychange', () => { if(!document.hidden && gate.classList.contains('hide')) keepAwake(); });
+
+$('#go').addEventListener('click', () => {
+  enterFS(); keepAwake(); gate.classList.add('hide'); showUI();
+  run(param());                                  // play() runs inside this touch
+});
+$('#bReplay').addEventListener('click', () => { showUI(); run('petals'); });
+$('#bClose').addEventListener('click', () => {   // stop everything, leave fullscreen, back to the open screen
+  gen++; setPaused(false); reset(); exitFS(); release(); ui.classList.remove('on'); gate.classList.remove('hide');
+});
+
+/* hold the button, or hold a finger anywhere on the screen, to pause; let go to resume */
+bHold.addEventListener('pointerdown', e => { e.preventDefault(); try{ bHold.setPointerCapture(e.pointerId); }catch(_){} showUI(); setPaused(true); });
+['pointerup','pointercancel'].forEach(t => bHold.addEventListener(t, () => { if(paused){ setPaused(false); showUI(); } }));
+let holdT = null;
+stage.addEventListener('pointerdown', e => {
+  showUI(); if(e.target.closest('button,a')) return;
+  holdT = setTimeout(() => setPaused(true), 280);
+});
+['pointerup','pointercancel','pointerleave'].forEach(t => stage.addEventListener(t, () => {
+  clearTimeout(holdT); if(paused && !bHold.classList.contains('down')){ setPaused(false); showUI(); } }));
+stage.addEventListener('pointermove', () => { if(ui.classList.contains('on')) showUI(); });
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => { if(e.code === 'Space'){ e.preventDefault(); setPaused(!paused); } });
+</script>
+</body>
+</html>
